@@ -5,12 +5,38 @@ amount. The service should support returning all transactions of a type. Also, t
 linked to each other (using a ”parent id”) and we need to know the total amount involved for all
 transactions linked to a particular transaction.
 
-Implementation Approaches
-1. Single Table Parent-Child Approach
+# NOTE : Asymptotic Complexity of Parent-Child Tree Operations
+When dealing with parent-child trees, understanding the asymptotic complexity of various operations is crucial for efficient design and implementation. In this context, we explore two distinct approaches for managing hierarchical relationships in transactions, each with its own characteristics and performance implications.
+
+## Implementation Approaches
+
+## 1. Single Table Parent-Child Approach
 In this approach, the Transaction table uses a single table to store both parent and child transactions. Each transaction has a parent_id field that links it to its parent transaction, if applicable. This design supports hierarchical transactions where each transaction can have multiple children, and queries can retrieve all related transactions by traversing these links.
 
-2. TransactionClosure Table Approach
+- Advantages:
+
+Simplicity in design and implementation.
+Direct representation of hierarchical relationships in a single table.
+
+- Disadvantages:
+
+Performance can degrade with deep or unbalanced hierarchies due to potentially high traversal costs.
+Recursive queries may be complex and less efficient in some database systems.
+
+## 2. TransactionClosure Table Approach
 The TransactionClosure table approach involves using an additional table, TransactionClosure, to efficiently query hierarchical relationships. This table stores all ancestor-descendant relationships for each transaction, enabling fast retrieval of all transactions linked to a particular transaction, including indirect links. This approach is particularly useful for complex hierarchies and large datasets, offering better performance for certain types of queries.
+
+- Advantages:
+
+Fast retrieval of hierarchical data due to precomputed ancestor-descendant relationships.
+Efficient querying of complex hierarchies and large datasets.
+
+- Disadvantages:
+
+Increased complexity in design and implementation due to the additional closure table.
+Additional storage and maintenance overhead for keeping the closure table updated.
+
+
 
 ## Prerequisites
 
