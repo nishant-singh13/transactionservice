@@ -5,6 +5,13 @@ amount. The service should support returning all transactions of a type. Also, t
 linked to each other (using a ”parent id”) and we need to know the total amount involved for all
 transactions linked to a particular transaction.
 
+Implementation Approaches
+1. Single Table Parent-Child Approach
+In this approach, the Transaction table uses a single table to store both parent and child transactions. Each transaction has a parent_id field that links it to its parent transaction, if applicable. This design supports hierarchical transactions where each transaction can have multiple children, and queries can retrieve all related transactions by traversing these links.
+
+2. TransactionClosure Table Approach
+The TransactionClosure table approach involves using an additional table, TransactionClosure, to efficiently query hierarchical relationships. This table stores all ancestor-descendant relationships for each transaction, enabling fast retrieval of all transactions linked to a particular transaction, including indirect links. This approach is particularly useful for complex hierarchies and large datasets, offering better performance for certain types of queries.
+
 ## Prerequisites
 
 - [Docker](https://www.docker.com/products/docker-desktop)
