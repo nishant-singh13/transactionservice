@@ -51,7 +51,6 @@ def get_transaction_by_parent(db: Session, parent_id: int) -> [Transaction]:
     :param : transaction ID
     :return:  Transaction object that match the transaction id
     """
-    print(" parent query -------", parent_id )
     return db.query(Transaction).filter(Transaction.parent_id == parent_id).all()
 
 
@@ -105,9 +104,7 @@ def calculate_sum(db: Session, transaction_id: int) -> float:
             transaction = queue[0]
             queue.pop(0)
             sum += transaction.amount
-            print("childer ---------", transaction.id)
             childrens = get_transaction_by_parent(db, transaction.id)
-            print("childer ---------", childrens)
             # push all children of the queue item
             if len(childrens) > 0:
                 queue += childrens

@@ -82,7 +82,7 @@ To ensure the correctness and functionality of the transactions service, you sho
 8.1. Test Case: Add a Transaction
 Description: Verify that a transaction can be added and stored correctly.
 
-Endpoint: PUT /transactionservice/transactions/{transection_id}
+Endpoint: PUT /transactionservice/transaction/{transection_id}
 
 Request Body:
 ```
@@ -97,6 +97,12 @@ Expected Response:
 ```
 Status Code: 200 Created
 Response Body: (Contains details of the created transaction)
+{
+    "id": 111,
+    "amount": 10.0,
+    "type": "string",
+    "parent_id": null
+}
 ```
 
 8.2. Test Case: Retrieve Transactions by Types
@@ -106,12 +112,26 @@ Endpoint: GET /transactionservice/types/{transaction_type}
 ```
 Example Request:
 ```
-curl -X GET "http://localhost:8000//transactionservice/types/expense"
+curl -X GET "http://localhost:8000/transactionservice/types/expense"
 Expected Response:
 
 
 Status Code: 200 OK
 Response Body: (List of transactions with the specified type)
+[
+    {
+        "id": 26,
+        "amount": 10.0,
+        "type": "string",
+        "parent_id": null
+    },
+    {
+        "id": 10,
+        "amount": 10.0,
+        "type": "string",
+        "parent_id": null
+    }
+]
 ```
 
 
@@ -128,6 +148,12 @@ Expected Response:
 
 Status Code: 200 OK
 Response Body: transactions  object 
+{
+    "id": 10,
+    "amount": 10.0,
+    "type": "string",
+    "parent_id": null
+}
 ```
 
 
@@ -139,11 +165,11 @@ Endpoint: GET GET /transactionservice/sum/{transaction_id}
 
 Example Request:
 ```
-curl -X GET "http://localhost:8000/GET /transactionservice/sum/1"
+curl -X GET "http://localhost:8000/transactionservice/sum/1"
 Expected Response:
 
 Status Code: 200 OK
-Response Body: {"sum": 100} 
+Response Body: {"sum": 100.0} 
 ```
 
 
