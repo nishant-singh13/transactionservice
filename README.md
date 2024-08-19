@@ -1,4 +1,4 @@
-# ComplianceLLM
+# Transection Service
 We would like to have a RESTful web service that stores some transactions (in memory is fine) and
 returns information about those transactions. The transactions to be stored have a type and an
 amount. The service should support returning all transactions of a type. Also, transactions can be
@@ -48,4 +48,19 @@ docker-compose down
 ```
 
 ## 7. API that we support 
-![](../../../../var/folders/m1/1m5k0xrj2_zfh2z2v38r4ryc0000gn/T/TemporaryItems/NSIRD_screencaptureui_vbVH6w/Screenshot 2024-08-19 at 10.38.57 AM.png)
+PUT
+/transactionservice/transaction/{transaction_id}
+Create Transaction
+
+
+GET
+/transactionservice/transaction/{transaction_id}
+Get Transaction By Id
+
+GET
+/transactionservice/types/{transaction_type}
+Get Transactions By Type
+
+GET
+/transactionservice/sum/{transaction_id}
+Get Transaction Sum
