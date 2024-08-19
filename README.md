@@ -1,4 +1,4 @@
-# Transection Service
+# Transaction Service
 We would like to have a RESTful web service that stores some transactions (in memory is fine) and
 returns information about those transactions. The transactions to be stored have a type and an
 amount. The service should support returning all transactions of a type. Also, transactions can be
